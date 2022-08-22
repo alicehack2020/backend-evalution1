@@ -46,12 +46,31 @@ app.post("/products/create",(req, res) => {
 
 //delete
 app.delete("/products/:productId", (req, res) => {
-    p = products.filter((state) => state.state !== req.params.productId);
-    save();
-     res.send("deleted")
+      products = products.filter(ele => ele.id !== Number(req.params.productId));
+      save();
+      res.send(products)
   });
 
+//update
+app.put("/products/:productId", (req, res) => {
+    products = products.map((ele) => {
+        if (ele.id === Number(req.params.productId)) {
+          return req.body;
+        } else {
+          return ele;
+        }
+      });
+      save();
+    
+      res.send({
+        status: "success",
+        stateInfo: req.body,
+      });
 
+
+    });
+
+  
 
 
 app.listen(3000,()=>{
