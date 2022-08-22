@@ -1,0 +1,11 @@
+use aug
+db.createCollection("augCollection")
+db.augColllection.find({id:{$mod:[2,0]}})
+db.augCollection.find({gender:"Male"})
+db.augCollection.find({native:"japan"})
+db.augCollection.find({native:"india",gender:"Female"})
+db.augCollection.find({age:{$gt:25}})
+db.augCollection.find({native:"united Stats",age:{$lt:50}})
+db.augCollection.find({relocate_to:"France"}).count()
+db.augCollection.find({relocate_to:"Russia",native:"United States"}).sort({age:1})
+db.augCollection.find().sort({age:-1,family_members:1})
